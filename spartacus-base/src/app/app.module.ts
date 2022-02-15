@@ -1,3 +1,4 @@
+import { CustomBestSellersModule } from './custom-best-sellers/custom-best-sellers.module';
 import { CustomLayoutModule } from './custom-layout/custom-layout.module';
 import { SalesDetailsModule } from './sales-details/sales-details.module';
 import { HttpClientModule } from "@angular/common/http";
@@ -11,11 +12,13 @@ import { CustomThemeModule } from "./custom-theme/custom-theme.module";
 import { SpartacusModule } from './spartacus/spartacus.module';
 import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
 import { SalesDetailsComponent } from './sales-details/sales-details.component';
+import { CustomBestSellersComponent } from './custom-best-sellers/custom-best-sellers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SalesDetailsComponent
+    SalesDetailsComponent,
+    CustomBestSellersComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { SalesDetailsComponent } from './sales-details/sales-details.component';
     CustomThemeModule,
     CustomDebbugerModule,
     SalesDetailsModule,
-    CustomLayoutModule
+    CustomLayoutModule,
+    CustomBestSellersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
