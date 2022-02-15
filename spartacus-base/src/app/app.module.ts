@@ -1,3 +1,4 @@
+import { SalesDetailsModule } from './sales-details/sales-details.module';
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,10 +9,12 @@ import { AppComponent } from './app.component';
 import { CustomThemeModule } from "./custom-theme/custom-theme.module";
 import { SpartacusModule } from './spartacus/spartacus.module';
 import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
+import { SalesDetailsComponent } from './sales-details/sales-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SalesDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,8 @@ import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
     EffectsModule.forRoot([]),
     SpartacusModule,
     CustomThemeModule,
-    CustomDebbugerModule
+    CustomDebbugerModule,
+    SalesDetailsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
