@@ -1,3 +1,4 @@
+import { CustomLayoutModule } from './custom-layout/custom-layout.module';
 import { SalesDetailsModule } from './sales-details/sales-details.module';
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
@@ -25,7 +26,8 @@ import { SalesDetailsComponent } from './sales-details/sales-details.component';
     SpartacusModule,
     CustomThemeModule,
     CustomDebbugerModule,
-    SalesDetailsModule
+    SalesDetailsModule,
+    CustomLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
