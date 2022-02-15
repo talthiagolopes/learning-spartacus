@@ -15,7 +15,7 @@ import { LayoutConfig } from '@spartacus/storefront';
       layoutSlots: {
         LandingPage2Template: {
           lg: {
-            slots: ['Section4', 'Section5']
+            slots: ['CustomBannerSlot', 'Section4', 'Section5']
           },
           md: {
             slots: []

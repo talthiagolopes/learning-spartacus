@@ -1,3 +1,4 @@
+import { CustomBannerModule } from './custom-banner/custom-banner.module';
 import { CustomBestSellersModule } from './custom-best-sellers/custom-best-sellers.module';
 import { CustomLayoutModule } from './custom-layout/custom-layout.module';
 import { SalesDetailsModule } from './sales-details/sales-details.module';
@@ -13,12 +14,14 @@ import { SpartacusModule } from './spartacus/spartacus.module';
 import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
 import { SalesDetailsComponent } from './sales-details/sales-details.component';
 import { CustomBestSellersComponent } from './custom-best-sellers/custom-best-sellers.component';
+import { CustomBannerComponent } from './custom-banner/custom-banner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SalesDetailsComponent,
-    CustomBestSellersComponent
+    CustomBestSellersComponent,
+    CustomBannerComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { CustomBestSellersComponent } from './custom-best-sellers/custom-best-se
     CustomDebbugerModule,
     SalesDetailsModule,
     CustomLayoutModule,
-    CustomBestSellersModule
+    CustomBestSellersModule,
+    CustomBannerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
