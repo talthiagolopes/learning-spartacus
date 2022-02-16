@@ -1,0 +1,16 @@
+<p>custom-mini-cart works!</p>
+<a
+  [attr.aria-label]="
+    'miniCart.item' | cxTranslate: { count: quantity$ | async }
+  "
+  [routerLink]="{ cxRoute: 'cart' } | cxUrl"
+>
+  <cx-icon [type]="iconTypes.CART"></cx-icon>
+
+  <span class="total">{{ total$ | async }}</span>
+  <span class="count">{{ quantity$ | async }}</span>
+</a>
+
+<div *ngIf="entries$ | async as entries">
+    {{entries | json }}
+</div>

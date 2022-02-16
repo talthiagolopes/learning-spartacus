@@ -1,3 +1,4 @@
+import { CustomMiniCartModule } from './custom-mini-cart/custom-mini-cart.module';
 import { CustomBannerModule } from './custom-banner/custom-banner.module';
 import { CustomBestSellersModule } from './custom-best-sellers/custom-best-sellers.module';
 import { CustomLayoutModule } from './custom-layout/custom-layout.module';
@@ -35,7 +36,8 @@ import { CustomBannerComponent } from './custom-banner/custom-banner.component';
     SalesDetailsModule,
     CustomLayoutModule,
     CustomBestSellersModule,
-    CustomBannerModule
+    CustomBannerModule,
+    CustomMiniCartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
