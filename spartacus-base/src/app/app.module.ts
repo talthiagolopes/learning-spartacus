@@ -1,3 +1,5 @@
+import { MyBannerModule } from './my-banner/my-banner.module';
+import { CustomCartModule } from './custom-cart/custom-cart.module';
 import { CustomMiniCartModule } from './custom-mini-cart/custom-mini-cart.module';
 import { CustomBannerModule } from './custom-banner/custom-banner.module';
 import { CustomBestSellersModule } from './custom-best-sellers/custom-best-sellers.module';
@@ -16,13 +18,11 @@ import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
 import { SalesDetailsComponent } from './sales-details/sales-details.component';
 import { CustomBestSellersComponent } from './custom-best-sellers/custom-best-sellers.component';
 import { CustomBannerComponent } from './custom-banner/custom-banner.component';
+import { MyBannerComponent } from './my-banner/my-banner.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SalesDetailsComponent,
-    CustomBestSellersComponent,
-    CustomBannerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +37,9 @@ import { CustomBannerComponent } from './custom-banner/custom-banner.component';
     CustomLayoutModule,
     CustomBestSellersModule,
     CustomBannerModule,
-    CustomMiniCartModule
+    CustomMiniCartModule,
+    CustomCartModule,
+    MyBannerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
