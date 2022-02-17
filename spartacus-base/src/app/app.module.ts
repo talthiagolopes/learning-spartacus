@@ -1,3 +1,7 @@
+import { CustomProductSummaryLaztModule } from './custom-product-summary-lazy/custom-product-summary-lazy.module';
+import { provideConfig } from '@spartacus/core';
+import { CustomProductSummaryModule } from './custom-product-summary/custom-product-summary.module';
+import { CustomProductSummaryComponent } from './custom-product-summary/custom-product-summary.component';
 import { MyBannerModule } from './my-banner/my-banner.module';
 import { CustomCartModule } from './custom-cart/custom-cart.module';
 import { CustomMiniCartModule } from './custom-mini-cart/custom-mini-cart.module';
@@ -15,11 +19,7 @@ import { AppComponent } from './app.component';
 import { CustomThemeModule } from "./custom-theme/custom-theme.module";
 import { SpartacusModule } from './spartacus/spartacus.module';
 import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
-import { SalesDetailsComponent } from './sales-details/sales-details.component';
-import { CustomBestSellersComponent } from './custom-best-sellers/custom-best-sellers.component';
-import { CustomBannerComponent } from './custom-banner/custom-banner.component';
-import { MyBannerComponent } from './my-banner/my-banner.component';
-
+import { CustomProductSummaryLazyComponent } from './custom-product-summary-lazy/custom-product-summary-lazy.component';
 @NgModule({
   declarations: [
     AppComponent
@@ -34,14 +34,24 @@ import { MyBannerComponent } from './my-banner/my-banner.component';
     CustomThemeModule,
     CustomDebbugerModule,
     SalesDetailsModule,
-    CustomLayoutModule,
+    //CustomLayoutModule,
     CustomBestSellersModule,
     CustomBannerModule,
     CustomMiniCartModule,
     CustomCartModule,
-    MyBannerModule
+    MyBannerModule,
+    CustomProductSummaryLaztModule
   ],
-  providers: [],
+  providers: [
+    provideConfig({
+      featureModules: {
+        customProductSummary: {
+          module: () => import('./custom-product-summary/custom-product-summary.module').then(m => m.CustomProductSummaryModule),
+          cmsComponents: ['ProductSummaryComponent']
+        }
+      }
+    })
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

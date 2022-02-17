@@ -7,7 +7,9 @@ import { provideCmsStructure } from '@spartacus/storefront';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CustomBannerComponent
+  ],
   imports: [
     CommonModule
   ],

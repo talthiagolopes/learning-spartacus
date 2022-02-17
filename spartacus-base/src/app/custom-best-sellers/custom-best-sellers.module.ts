@@ -7,7 +7,9 @@ import { CmsPageGuard } from '@spartacus/storefront';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CustomBestSellersComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild([
