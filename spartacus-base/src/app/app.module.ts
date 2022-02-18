@@ -1,7 +1,6 @@
+import { AnonymousConsentManagementBannerComponent } from '@spartacus/storefront';
 import { CustomProductSummaryLaztModule } from './custom-product-summary-lazy/custom-product-summary-lazy.module';
-import { provideConfig } from '@spartacus/core';
-import { CustomProductSummaryModule } from './custom-product-summary/custom-product-summary.module';
-import { CustomProductSummaryComponent } from './custom-product-summary/custom-product-summary.component';
+import { DeferLoadingStrategy, provideConfig } from '@spartacus/core';
 import { MyBannerModule } from './my-banner/my-banner.module';
 import { CustomCartModule } from './custom-cart/custom-cart.module';
 import { CustomMiniCartModule } from './custom-mini-cart/custom-mini-cart.module';
@@ -50,7 +49,21 @@ import { CustomProductSummaryLazyComponent } from './custom-product-summary-lazy
           cmsComponents: ['ProductSummaryComponent']
         }
       }
-    })
+    }),
+    provideConfig({
+      deferredLoading: {
+        strategy: DeferLoadingStrategy.DEFER,
+        intersectionMargin: '50px'
+      }
+    }),
+    provideConfig({
+      cmsComponents: {
+        AnonymousConsentManagementBannerComponent: {
+          component: AnonymousConsentManagementBannerComponent,
+          deferLoading: DeferLoadingStrategy.DEFER
+        }
+      }
+    }),
   ],
   bootstrap: [AppComponent]
 })
