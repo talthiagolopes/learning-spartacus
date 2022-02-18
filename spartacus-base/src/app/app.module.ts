@@ -57,6 +57,29 @@ import { CustomProductSummaryLazyComponent } from './custom-product-summary-lazy
       }
     }),
     provideConfig({
+      layoutSlots: {
+        LandingPage2Template: {
+          pageFold: 'Section2A',
+          md: {
+            pageFold: 'Section2B'
+          },
+          xs: {
+            pageFold: 'Section3'
+          }
+        }
+      }
+    }),
+    provideConfig({
+      layoutSlots: {
+        ProductDetailsPageTemplate: {
+          pageFold: 'CrossSelling',
+          lg: {
+            pageFold: 'CrossSelling'
+          }
+        }
+      }
+    }),
+    provideConfig({
       cmsComponents: {
         AnonymousConsentManagementBannerComponent: {
           component: AnonymousConsentManagementBannerComponent,
