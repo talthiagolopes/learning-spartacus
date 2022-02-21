@@ -1,3 +1,4 @@
+import { DurumModule } from './durum/durum.module';
 import { AnonymousConsentManagementBannerComponent } from '@spartacus/storefront';
 import { CustomProductSummaryLaztModule } from './custom-product-summary-lazy/custom-product-summary-lazy.module';
 import { DeferLoadingStrategy, provideConfig } from '@spartacus/core';
@@ -39,7 +40,8 @@ import { CustomProductSummaryLazyComponent } from './custom-product-summary-lazy
     CustomMiniCartModule,
     CustomCartModule,
     MyBannerModule,
-    CustomProductSummaryLaztModule
+    CustomProductSummaryLaztModule,
+    DurumModule
   ],
   providers: [
     provideConfig({
