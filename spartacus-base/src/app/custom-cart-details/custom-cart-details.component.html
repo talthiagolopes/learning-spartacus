@@ -1,0 +1,45 @@
+<ng-container *ngIf="cart$ | async as cart">
+  <ng-container *ngIf="entries$ | async as entries">
+    <div *ngIf="cart.totalItems > 0" class="cart-details-wrapper">
+      <h4 class="cx-total">
+        {{ 'cartDetails.cartName' | cxTranslate: { code: cart.code } }}
+      </h4>
+
+      <div class="cx-item-list-row" *ngFor="let entry of entries; let i = index">
+        <div class="cx-info-container row">
+          <div *ngIf="entry.product.name" class="cx-name">
+            <a
+              class="cx-link"
+              [routerLink]="{ cxRoute: 'product', params: entry.product } | cxUrl "
+              cxModal="dismiss"
+              >
+                <h4>{{ entry.product.name }}</h4>
+              </a
+            >
+          </div>
+
+          <div
+            class="cx-label"
+            [ngClass]="compact ? '' : ' d-block d-md-none d-lg-none d-xl-none'"
+          >
+            {{ 'cartItems.itemPrice' | cxTranslate }}
+          </div>
+          <div *ngIf="entry.basePrice" class="cx-value">
+            - {{ entry.basePrice?.formattedValue }}
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <cx-cart-item-list
+        [items]="entries"
+        [cartIsLoading]="!(cartLoaded$ | async)"
+        [promotionLocation]="promotionLocation"
+        [options]="{
+          isSaveForLater: true,
+          optionalBtn: saveForLaterBtn
+        }"
+      ></cx-cart-item-list> -->
+    </div>
+  </ng-container>
+</ng-container>

@@ -1,3 +1,5 @@
+import { CustomProductCarouselModule } from './custom-product-carousel/custom-product-carousel.module';
+import { CustomCartDetailsModule } from './custom-cart-details/custom-cart-details.module';
 import { DurumModule } from './durum/durum.module';
 import { AnonymousConsentManagementBannerComponent } from '@spartacus/storefront';
 import { CustomProductSummaryLaztModule } from './custom-product-summary-lazy/custom-product-summary-lazy.module';
@@ -19,7 +21,6 @@ import { AppComponent } from './app.component';
 import { CustomThemeModule } from "./custom-theme/custom-theme.module";
 import { SpartacusModule } from './spartacus/spartacus.module';
 import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
-import { CustomProductSummaryLazyComponent } from './custom-product-summary-lazy/custom-product-summary-lazy.component';
 @NgModule({
   declarations: [
     AppComponent
@@ -38,10 +39,12 @@ import { CustomProductSummaryLazyComponent } from './custom-product-summary-lazy
     CustomBestSellersModule,
     CustomBannerModule,
     CustomMiniCartModule,
-    CustomCartModule,
+    //CustomCartModule,
     MyBannerModule,
     CustomProductSummaryLaztModule,
-    DurumModule
+    DurumModule,
+    CustomCartDetailsModule,
+    CustomProductCarouselModule
   ],
   providers: [
     provideConfig({
