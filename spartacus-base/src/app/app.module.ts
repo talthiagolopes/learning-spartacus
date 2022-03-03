@@ -48,6 +48,13 @@ import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
   ],
   providers: [
     provideConfig({
+      context: {
+        baseSite: ['electronics-spa'],
+        customParam: ['test'],
+        urlParameters: ['baseSite', 'language', 'currency', 'customParam']
+      }
+    }),
+    provideConfig({
       featureModules: {
         customProductSummary: {
           module: () => import('./custom-product-summary/custom-product-summary.module').then(m => m.CustomProductSummaryModule),
