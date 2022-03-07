@@ -1,3 +1,4 @@
+import { ProductNameNormalizerService } from './product-name-normalizer.service';
 import { CustomRoutingModule } from './custom-routing/custom-routing.module';
 import { StaticPageModule } from './static-page/static-page.module';
 import { CustomProductCarouselModule } from './custom-product-carousel/custom-product-carousel.module';
@@ -5,7 +6,7 @@ import { CustomCartDetailsModule } from './custom-cart-details/custom-cart-detai
 import { DurumModule } from './durum/durum.module';
 import { AnonymousConsentManagementBannerComponent } from '@spartacus/storefront';
 import { CustomProductSummaryLaztModule } from './custom-product-summary-lazy/custom-product-summary-lazy.module';
-import { DeferLoadingStrategy, provideConfig } from '@spartacus/core';
+import { DeferLoadingStrategy, PRODUCT_NORMALIZER, provideConfig } from '@spartacus/core';
 import { MyBannerModule } from './my-banner/my-banner.module';
 import { CustomCartModule } from './custom-cart/custom-cart.module';
 import { CustomMiniCartModule } from './custom-mini-cart/custom-mini-cart.module';
@@ -51,6 +52,9 @@ import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
    CustomRoutingModule
   ],
   providers: [
+    {
+      provide: PRODUCT_NORMALIZER, useClass: ProductNameNormalizerService, multi: true
+    },
     provideConfig({
       context: {
         baseSite: ['electronics-spa'],
