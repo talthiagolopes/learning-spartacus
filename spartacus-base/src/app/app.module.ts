@@ -1,3 +1,4 @@
+import { ProductCategoryNormalizerService } from './product-category-normalizer.service';
 import { ProductNameNormalizerService } from './product-name-normalizer.service';
 import { CustomRoutingModule } from './custom-routing/custom-routing.module';
 import { StaticPageModule } from './static-page/static-page.module';
@@ -54,6 +55,9 @@ import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
   providers: [
     {
       provide: PRODUCT_NORMALIZER, useClass: ProductNameNormalizerService, multi: true
+    },
+    {
+      provide: PRODUCT_NORMALIZER, useClass: ProductCategoryNormalizerService, multi: true
     },
     provideConfig({
       context: {

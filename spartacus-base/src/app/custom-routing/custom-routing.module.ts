@@ -34,6 +34,7 @@ const STATIC_ROUTES: Routes = [
         routes: {
           product: {
             paths: [
+              'electronics/cameras/:firstCategory/:manufacturer/:productCode/:name/',
               'electronics/cameras/:manufacturer/:productCode/:name/',
               'electronics/cameras/:productCode/:nameForUrl/',
               'electronics/cameras/:productCode'
@@ -49,7 +50,7 @@ const STATIC_ROUTES: Routes = [
           endpoints: {
             product: {
               list:
-                'products/${productCode}?fields=code,name,summary,manufacturer, price(formattedValue),images(DEFAULT,galleryIndex),baseProduct',
+                'products/${productCode}?fields=code,name,summary,manufacturer,categories(FULL),price(formattedValue),images(DEFAULT,galleryIndex),baseProduct',
             }
           }
         }
