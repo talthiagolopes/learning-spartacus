@@ -1,3 +1,4 @@
+import { provideConfig, RoutingConfig } from '@spartacus/core';
 import { CmsPageGuard, PageLayoutComponent } from '@spartacus/storefront';
 import { StaticPageComponent } from './../static-page/static-page.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -25,7 +26,34 @@ const STATIC_ROUTES: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(STATIC_ROUTES)
+    RouterModule.forChild(STATIC_ROUTES),
+  ],
+  providers: [
+    provideConfig({
+      routing: {
+        routes: {
+          product: {
+            paths: [
+              'electronics/cameras/:manufacturer/:productCode/:name/',
+              'electronics/cameras/:productCode/:name/',
+              'electronics/cameras/:productCode'
+            ]
+          }
+        }
+      }
+    } as RoutingConfig),
+    provideConfig({
+      backend: {
+        occ: {
+          endpoints: {
+            product: {
+              list:
+                'products/${productCode}?fields=code,name,summary,manufacturer, price(formattedValue),images(DEFAULT,galleryIndex),baseProduct',
+            }
+          }
+        }
+      }
+    })
   ]
 })
 export class CustomRoutingModule { }

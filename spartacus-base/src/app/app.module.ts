@@ -48,14 +48,14 @@ import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
     CustomCartDetailsModule,
     CustomProductCarouselModule,
     StaticPageModule,
-    CustomRoutingModule
+   CustomRoutingModule
   ],
   providers: [
     provideConfig({
       context: {
         baseSite: ['electronics-spa'],
-        customParam: ['test'],
-        urlParameters: ['baseSite', 'language', 'currency', 'customParam']
+        //customParam: ['test'],
+        urlParameters: ['baseSite', 'language', 'currency']
       }
     }),
     provideConfig({
