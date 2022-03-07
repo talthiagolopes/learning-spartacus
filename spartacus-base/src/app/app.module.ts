@@ -1,3 +1,5 @@
+import { CustomRoutingModule } from './custom-routing/custom-routing.module';
+import { StaticPageModule } from './static-page/static-page.module';
 import { CustomProductCarouselModule } from './custom-product-carousel/custom-product-carousel.module';
 import { CustomCartDetailsModule } from './custom-cart-details/custom-cart-details.module';
 import { DurumModule } from './durum/durum.module';
@@ -44,7 +46,9 @@ import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
     CustomProductSummaryLaztModule,
     DurumModule,
     CustomCartDetailsModule,
-    CustomProductCarouselModule
+    CustomProductCarouselModule,
+    StaticPageModule,
+    CustomRoutingModule
   ],
   providers: [
     provideConfig({
