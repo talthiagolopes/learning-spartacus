@@ -1,3 +1,4 @@
+import { ContactModule } from './contact/contact.module';
 import { SpecialOfferModule } from './special-offer/special-offer.module';
 import { ProductCategoryNormalizerService } from './product-category-normalizer.service';
 import { ProductNameNormalizerService } from './product-name-normalizer.service';
@@ -53,8 +54,8 @@ import { RouterModule } from '@angular/router';
     CustomProductCarouselModule,
     StaticPageModule,
     CustomRoutingModule,
-    SpecialOfferModule
-
+    SpecialOfferModule,
+    ContactModule
   ],
   providers: [
     {
