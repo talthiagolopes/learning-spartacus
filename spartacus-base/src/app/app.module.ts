@@ -1,3 +1,4 @@
+import { SpecialOfferModule } from './special-offer/special-offer.module';
 import { ProductCategoryNormalizerService } from './product-category-normalizer.service';
 import { ProductNameNormalizerService } from './product-name-normalizer.service';
 import { CustomRoutingModule } from './custom-routing/custom-routing.module';
@@ -7,7 +8,7 @@ import { CustomCartDetailsModule } from './custom-cart-details/custom-cart-detai
 import { DurumModule } from './durum/durum.module';
 import { AnonymousConsentManagementBannerComponent } from '@spartacus/storefront';
 import { CustomProductSummaryLaztModule } from './custom-product-summary-lazy/custom-product-summary-lazy.module';
-import { DeferLoadingStrategy, PRODUCT_NORMALIZER, provideConfig } from '@spartacus/core';
+import { DeferLoadingStrategy, PRODUCT_NORMALIZER, provideConfig, UrlModule } from '@spartacus/core';
 import { MyBannerModule } from './my-banner/my-banner.module';
 import { CustomCartModule } from './custom-cart/custom-cart.module';
 import { CustomMiniCartModule } from './custom-mini-cart/custom-mini-cart.module';
@@ -25,6 +26,7 @@ import { AppComponent } from './app.component';
 import { CustomThemeModule } from "./custom-theme/custom-theme.module";
 import { SpartacusModule } from './spartacus/spartacus.module';
 import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent
@@ -50,7 +52,9 @@ import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
     CustomCartDetailsModule,
     CustomProductCarouselModule,
     StaticPageModule,
-   CustomRoutingModule
+    CustomRoutingModule,
+    SpecialOfferModule
+
   ],
   providers: [
     {

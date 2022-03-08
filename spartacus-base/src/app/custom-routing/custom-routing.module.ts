@@ -34,9 +34,9 @@ const STATIC_ROUTES: Routes = [
         routes: {
           product: {
             paths: [
-              'electronics/cameras/:firstCategory/:manufacturer/:productCode/:name/',
-              'electronics/cameras/:manufacturer/:productCode/:name/',
-              'electronics/cameras/:productCode/:nameForUrl/',
+              'electronics/cameras/:firstCategory/:manufacturer/:productCode/:name',
+              'electronics/cameras/:manufacturer/:productCode/:name',
+              'electronics/cameras/:productCode/:nameForUrl',
               'electronics/cameras/:productCode'
             ],
             paramsMapping: { name: 'nameForUrl'}
