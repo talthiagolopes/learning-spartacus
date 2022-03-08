@@ -12,6 +12,10 @@ export class ProductNameNormalizerService implements Converter<Occ.Product, Prod
 
     if (source.name && target) {
       target.nameForUrl = source.name?.replace(/ /g, '-' );
+
+      if (target.nameForUrl.length > 10) {
+        target.nameForUrl = target.nameForUrl.slice(0, 10);
+      }
     }
 
     return target || {};

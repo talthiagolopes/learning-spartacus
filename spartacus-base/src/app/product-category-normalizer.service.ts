@@ -14,6 +14,10 @@ export class ProductCategoryNormalizerService implements Converter<Occ.Product, 
       target.firstCategory = source.categories[0].name?.replace(/ /g, '-' ).toLowerCase();
     }
 
+    if (source.categories && source.categories[1].name && target) {
+      target.secondCategory = source.categories[1].name?.replace(/ /g, '-' ).toLowerCase();
+    }
+
     return target;
   }
 }
