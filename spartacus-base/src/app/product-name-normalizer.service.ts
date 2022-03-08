@@ -8,7 +8,7 @@ export class ProductNameNormalizerService implements Converter<Occ.Product, Prod
 
   constructor() { }
 
-  convert(source: Occ.Product, target?: any): any { // Workarround - The correct aproach is: Create a new interface from Product that extends of Product
+  convert(source: Occ.Product, target?: any): any { // Workaround - The correct aproach is: Create a new interface from Product that extends of Product
 
     if (source.name && target) {
       target.nameForUrl = source.name?.replace(/ /g, '-' );
