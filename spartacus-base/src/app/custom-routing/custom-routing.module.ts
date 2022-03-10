@@ -1,4 +1,8 @@
-import { provideConfig, RoutingConfig } from '@spartacus/core';
+import { ProductManufacturerNormalizerService } from './../product-manufacturer-normalizer.service';
+import { ProductCategoryNormalizerService } from './../product-category-normalizer.service';
+import { ProductNameNormalizerService } from './../product-name-normalizer.service';
+import { ContactComponent } from './../contact/contact.component';
+import { provideConfig, RoutingConfig, Product, PRODUCT_NORMALIZER } from '@spartacus/core';
 import { CmsPageGuard, PageLayoutComponent } from '@spartacus/storefront';
 import { StaticPageComponent } from './../static-page/static-page.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,9 +22,25 @@ const STATIC_ROUTES: Routes = [
     component: PageLayoutComponent,
     canActivate: [CmsPageGuard],
     data: { pageLabel: 'faq' }
-
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+    canActivate: [CmsPageGuard]
   }
 ]
+export interface CustomProduct extends Product {
+  nameForUrl?: string,
+  firstCategory?: string,
+  secondCategory?: string
+}
+
+export function prettify(value?: string): string {
+  if (value) {
+    return value.replace(/ /g, '-' ).toLowerCase()
+  }
+  return '';
+}
 
 @NgModule({
   declarations: [],
@@ -29,6 +49,21 @@ const STATIC_ROUTES: Routes = [
     RouterModule.forChild(STATIC_ROUTES),
   ],
   providers: [
+    {
+      provide: PRODUCT_NORMALIZER,
+      useClass: ProductNameNormalizerService,
+      multi: true
+    },
+    {
+      provide: PRODUCT_NORMALIZER,
+      useClass: ProductCategoryNormalizerService,
+      multi: true
+    },
+    {
+      provide: PRODUCT_NORMALIZER,
+      useClass: ProductManufacturerNormalizerService,
+      multi: true
+    },
     provideConfig({
       routing: {
         routes: {

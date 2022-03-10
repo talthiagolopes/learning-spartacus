@@ -1,3 +1,4 @@
+import { UrlModule } from '@spartacus/core';
 import { CmsPageGuard } from '@spartacus/storefront';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -12,13 +13,8 @@ import { ContactComponent } from './contact.component';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([
-      {
-        path: 'contact',
-        component: ContactComponent,
-        canActivate: [CmsPageGuard]
-      }
-    ])
+    RouterModule,
+    UrlModule
   ]
 })
 export class ContactModule { }

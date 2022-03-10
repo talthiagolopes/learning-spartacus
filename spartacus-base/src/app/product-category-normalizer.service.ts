@@ -1,5 +1,6 @@
 import { Product, Converter, Occ } from '@spartacus/core';
 import { Injectable } from '@angular/core';
+import { prettify, CustomProduct } from './custom-routing/custom-routing.module';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +9,13 @@ export class ProductCategoryNormalizerService implements Converter<Occ.Product, 
 
   constructor() { }
 
-  convert(source: Occ.Product, target?: any): any { // Workaround - The correct aproach is: Create a new interface from Product that extends of Product
+  convert(source: Occ.Product, target?: CustomProduct): CustomProduct {
 
-    if (source.categories && source.categories[0].name && target) {
-      target.firstCategory = source.categories[0].name?.replace(/ /g, '-' ).toLowerCase();
+    if (source.categories && source.categories.length && target) {
+      target.firstCategory = (source.categories.length == 1) ? prettify(source.categories[0].name) : '';
+      target.firstCategory =  (source.categories.length == 2) ? prettify(source.categories[1].name) : '';
     }
 
-    if (source.categories && source.categories[1].name && target) {
-      target.secondCategory = source.categories[1].name?.replace(/ /g, '-' ).toLowerCase();
-    }
-
-    return target;
+    return target || {};
   }
 }

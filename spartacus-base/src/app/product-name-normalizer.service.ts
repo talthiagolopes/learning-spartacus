@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Converter, Occ, Product } from '@spartacus/core';
+import { prettify, CustomProduct } from './custom-routing/custom-routing.module';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,10 @@ export class ProductNameNormalizerService implements Converter<Occ.Product, Prod
 
   constructor() { }
 
-  convert(source: Occ.Product, target?: any): any { // Workaround - The correct aproach is: Create a new interface from Product that extends of Product
+  convert(source: Occ.Product, target?: CustomProduct): CustomProduct {
 
     if (source.name && target) {
-      target.nameForUrl = source.name?.replace(/ /g, '-' );
+      target.nameForUrl = prettify(source.name);
 
       if (target.nameForUrl.length > 10) {
         target.nameForUrl = target.nameForUrl.slice(0, 10);

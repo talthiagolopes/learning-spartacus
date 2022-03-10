@@ -1,7 +1,5 @@
 import { ContactModule } from './contact/contact.module';
 import { SpecialOfferModule } from './special-offer/special-offer.module';
-import { ProductCategoryNormalizerService } from './product-category-normalizer.service';
-import { ProductNameNormalizerService } from './product-name-normalizer.service';
 import { CustomRoutingModule } from './custom-routing/custom-routing.module';
 import { StaticPageModule } from './static-page/static-page.module';
 import { CustomProductCarouselModule } from './custom-product-carousel/custom-product-carousel.module';
@@ -9,7 +7,7 @@ import { CustomCartDetailsModule } from './custom-cart-details/custom-cart-detai
 import { DurumModule } from './durum/durum.module';
 import { AnonymousConsentManagementBannerComponent } from '@spartacus/storefront';
 import { CustomProductSummaryLaztModule } from './custom-product-summary-lazy/custom-product-summary-lazy.module';
-import { DeferLoadingStrategy, PRODUCT_NORMALIZER, provideConfig, UrlModule } from '@spartacus/core';
+import { DeferLoadingStrategy, provideConfig } from '@spartacus/core';
 import { MyBannerModule } from './my-banner/my-banner.module';
 import { CustomCartModule } from './custom-cart/custom-cart.module';
 import { CustomMiniCartModule } from './custom-mini-cart/custom-mini-cart.module';
@@ -27,7 +25,6 @@ import { AppComponent } from './app.component';
 import { CustomThemeModule } from "./custom-theme/custom-theme.module";
 import { SpartacusModule } from './spartacus/spartacus.module';
 import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
-import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent
@@ -58,12 +55,6 @@ import { RouterModule } from '@angular/router';
     ContactModule
   ],
   providers: [
-    {
-      provide: PRODUCT_NORMALIZER, useClass: ProductNameNormalizerService, multi: true
-    },
-    {
-      provide: PRODUCT_NORMALIZER, useClass: ProductCategoryNormalizerService, multi: true
-    },
     provideConfig({
       context: {
         baseSite: ['electronics-spa'],
