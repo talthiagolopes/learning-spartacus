@@ -1,3 +1,4 @@
+import { CustomAddressModule } from './custom-address/custom-address.module';
 import { ContactModule } from './contact/contact.module';
 import { SpecialOfferModule } from './special-offer/special-offer.module';
 import { CustomRoutingModule } from './custom-routing/custom-routing.module';
@@ -52,7 +53,8 @@ import { CustomDebbugerModule } from "./custom-debbuger/custom-debbuger.module";
     StaticPageModule,
     CustomRoutingModule,
     SpecialOfferModule,
-    ContactModule
+    ContactModule,
+    CustomAddressModule
   ],
   providers: [
     provideConfig({
