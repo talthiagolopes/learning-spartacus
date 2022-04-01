@@ -1,0 +1,9 @@
+<div style="text-align: center" *ngIf="componentData$ | async as item">
+  <cx-media [container]="item.image"></cx-media>
+
+  <div>
+    <p>{{ item.title }}</p>
+    <p>{{ item.paragraph }}</p>
+    <a [href]="item.link" target="_blank">Go To Online</a>
+  </div>
+</div>
