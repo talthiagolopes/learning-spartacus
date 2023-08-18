@@ -1,0 +1,75 @@
+#
+# Import the CMS content for the Electronics SPA site
+#
+$contentCatalog = electronics-spaContentCatalog
+$contentCV = catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]), CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog = electronicsProductCatalog
+$productCV = catalogVersion(catalog(id[default=$productCatalog]), version[default='Online'])[unique=true, default=$productCatalog:Online]
+
+# Import modulegen config properties into impex macros
+INSERT_UPDATE GenericItem[processor = de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor]; pk[unique = true]
+#$jarResourceCms = $config-jarResourceCmsValue
+$jarResourceCms = jar:com.cxforspacore.setup.CxforspacoreSystemSetup&/cxforspacore/import/cockpits/cmscockpit
+
+# Create PageTemplates
+# These define the layout for pages
+# "FrontendTemplateName" is used to define the JSP that should be used to render the page for pages with multiple possible layouts.
+# "RestrictedPageTypes" is used to restrict templates to page types
+INSERT_UPDATE PageTemplate; $contentCV[unique = true]; uid[unique = true]          ; name                            ; frontendTemplateName             ; restrictedPageTypes(code); active[default = true]
+                          ;                          ; ContentPageGiftCardTemplate ; Content Page Gift Card Template ; layout/contentLayoutGiftCardPage ; ContentPage
+
+# Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
+# The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
+UPDATE PageTemplate; $contentCV[unique = true]; uid[unique = true]          ; velocityTemplate[translator = de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+                   ;                          ; ContentPageGiftCardTemplate ; $jarResourceCms/structure-view/structure_contentPageGiftCardTemplate.vm
+
+# Product Details Page Template
+# The CrossSelling and UpSelling slots are designed for related products, cross-sells and up-sells.
+INSERT_UPDATE ContentSlotName; name[unique = true]     ; template(uid, $contentCV)[unique = true][default = 'ContentPageGiftCardTemplate']; validComponentTypes(code); compTypeGroup(code)
+                             ; SiteLogo                ;                                                                                  ;                          ; logo
+                             ; HeaderLinks             ;                                                                                  ;                          ; headerlinks
+                             ; SearchBox               ;                                                                                  ;                          ; searchbox
+                             ; MiniCart                ;                                                                                  ;                          ; minicart
+                             ; NavigationBar           ;                                                                                  ;                          ; navigation
+                             ; SectionGiftCard         ;                                                                                  ;                          ; wide
+                             ; SectionGiftCardProducts ;                                                                                  ;                          ; wide
+                             ; Footer                  ;                                                                                  ;                          ; footer
+                             ; TopHeaderSlot           ;                                                                                  ;                          ; wide
+                             ; BottomHeaderSlot        ;                                                                                  ;                          ; wide
+# Create Content Slots
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]   ; name                    ; active
+                         ;                          ; GiftCardSlot         ; gIFT Card Slot          ; true
+                         ;                          ; GiftCardProductsSlot ; Gift Card Products Slot ; true
+
+# Bind Content Slots to Page Templates
+INSERT_UPDATE ContentSlotForTemplate; $contentCV[unique = true]; uid[unique = true]                                  ; position[unique = true] ; pageTemplate(uid, $contentCV)[unique = true][default = 'ContentPageGiftCardTemplate']; contentSlot(uid, $contentCV)[unique = true]; allowOverwrite
+                                    ;                          ; SiteLogo-ContentPageGiftCardTemplate                ; SiteLogo                ;                                                                                      ; SiteLogoSlot                               ; true
+                                    ;                          ; NavigationBar-ContentPageGiftCardTemplate           ; NavigationBar           ;                                                                                      ; NavigationBarSlot                          ; true
+                                    ;                          ; MiniCart-ContentPageGiftCardTemplate                ; MiniCart                ;                                                                                      ; MiniCartSlot                               ; true
+                                    ;                          ; Footer-ContentPageGiftCardTemplate                  ; Footer                  ;                                                                                      ; FooterSlot                                 ; true
+                                    ;                          ; HeaderLinks-ContentPageGiftCardTemplate             ; HeaderLinks             ;                                                                                      ; HeaderLinksSlot                            ; true
+                                    ;                          ; SearchBox-ContentPageGiftCardTemplate               ; SearchBox               ;                                                                                      ; SearchBoxSlot                              ; true
+                                    ;                          ; TopHeaderSlot-ContentPageGiftCardTemplate           ; TopHeaderSlot           ;                                                                                      ; TopHeaderSlot                              ; true
+                                    ;                          ; BottomHeaderSlot-ContentPageGiftCardTemplate        ; BottomHeaderSlot        ;                                                                                      ; BottomHeaderSlot                           ; true
+                                    ;                          ; SectionGiftCard-ContentPageGiftCardTemplate         ; SectionGiftCard         ;                                                                                      ; GiftCardSlot                               ; true
+                                    ;                          ; SectionGiftCardProducts-ContentPageGiftCardTemplate ; SectionGiftCardProducts ;                                                                                      ; GiftCardProductsSlot                       ; true
+
+# Simple Content Pages
+INSERT_UPDATE ContentPage; $contentCV[unique = true]; uid[unique = true]; name            ; masterTemplate(uid, $contentCV); label; defaultPage[default = 'true']; approvalStatus(code)[default = 'approved']; homepage[default = 'false']
+                         ;                          ; giftCards         ; Gift Cards Page ; ContentPageGiftCardTemplate    ; /gift-cards
+
+# Media
+INSERT_UPDATE Media; $contentCV[unique = true]; code[unique = true] ; url                                                               ; realfilename; mime[default = 'image/jpeg']
+                   ;                          ; giftCardBannerImage ; https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX38011529.jpg ; image.jpg   ;
+# Git Card Banner Simple Responsive Banner Component
+INSERT_UPDATE GiftCardBannerComponent; $contentCV[unique = true]; uid[unique = true]      ; title                 ; paragraph                                                                                                                                                                                       ; link                               ; image(code, $contentCV)
+                                     ;                          ; GiftCardBannerComponent ; Git Cards from Amazon ; Closed-loop gift cards usually will not require any activation fees, Many gift cards will have a minimum and maximum initial loading amount, Closed-loop gift cards usually are not reloadable. ; https://www.amazon.com/gift-cards/ ; giftCardBannerImage
+
+# Git Card Banner Simple Responsive Banner Component
+INSERT_UPDATE GiftCardProductsComponent; $contentCV[unique = true]; uid[unique = true]        ; name                       ; products(code, $productCV)  ; scroll(code); popup
+                                       ;                          ; GiftCardProductsComponent ; Gift Card Product Carousel ; 300938,358639,553637,816802 ; allVisible  ; false
+
+# Update Content Slot with Components
+INSERT_UPDATE ContentSlot; $contentCV[unique = true]; uid[unique = true]   ; cmsComponents(uid)
+                         ;                          ; GiftCardSlot         ; GiftCardBannerComponent
+                         ;                          ; GiftCardProductsSlot ; GiftCardProductsComponent

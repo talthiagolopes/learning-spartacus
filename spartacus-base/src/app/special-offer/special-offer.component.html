@@ -1,0 +1,6 @@
+<p>special-offer works!</p>
+<a routerLink="/electronics/cameras/HP/300938/Photosmart-E317-Digital-Camera/"> Product Offer </a>
+<br/>
+<a [routerLink]="{ cxRoute: 'product', params: { code: '300938', nameForUrl: 'Photosmart-E317-Digital-Camera' }} | cxUrl"> Product Offer cxUrl</a>
+><br/>
+<button type="button" (click)="gotToRandomProduct()"> Random Product</button>
